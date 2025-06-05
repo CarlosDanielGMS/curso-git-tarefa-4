@@ -1,0 +1,26 @@
+name: Publicar no GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_artifacts:
+    runs-on: ubuntu-latest
+    
+    container:
+      image: alpine:latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+        
+      - name: Mensagem de Implantação
+        run: echo "Publicando..."
+        
+      - name: Publicar
+        uses: actions/upload-artifact@v3
+        with:
+          name: public
+          path: public/
